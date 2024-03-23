@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .container{
+  
+        background: linear-gradient(135deg ,gray,white,green);
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+    }
+    h2{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .box{
+        flex-direction: column;
+        margin: auto;
+        width: 100%;
+        max-width: 450px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+    .box input{
+        border: none;
+        outline: none;
+        background-color: gray;
+        border-radius: 50px;
+        padding: 15px 15px;
+        color: white;
+    }
+    .box button{
+        padding: 15px;
+        border: none;
+        border-radius: 50px;
+        background-color: rgb(253, 167, 68);
+    }
+    .box input::placeholder{
+        color: #fff;
+    }
+    #table{
+        text-align: center;
+        margin-top: 10px;
+        border: 1px solid gray;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    td{
+        padding: 5px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+ 
+    <h2>Generate Table</h2>
+    <div class="box">
+        <input type="text" name="" id="first"  placeholder="Enter first number here..."/>
+        <h3>To</h3>
+        <input type="text" name="" id="last" placeholder="Enter second number here..."/>
+        <button id="generate">Generate</button>
+    </div>
+
+  <div id="table"></div>
+         
+</div>
+
+  <script>
+    let num = document.getElementById("first");
+    let end = document.getElementById("last");
+    let btn = document.getElementById("generate");
+    let show= document.getElementById('table');
+
+    btn.addEventListener("click", () => {
+      if (!num.value || !end.value) {
+        alert("Please enter both numbers.");
+        return;
+      }
+
+      function generateTables() {
+        let tableHTML = ""; // Variable to store HTML content of tables
+        for (let i = parseInt(num.value); i <= parseInt(end.value); i++) {
+          tableHTML += `<table border="1">`; // Open table tag for each multiplication table
+          tableHTML += `<caption>Table for ${i}</caption>`; // Table caption for each multiplication table
+          for (let j = 1; j <= 10; j++) {
+            tableHTML += `
+              <tr>
+                <td>${i} * ${j}</td>
+                <td>${i * j}</td>
+              </tr>
+            `;
+          }
+          tableHTML += `</table>`; // Close table tag for each multiplication table
+        }
+        show.innerHTML = tableHTML; // Set the innerHTML of the 'table' div to display tables
+      }
+
+      // Call the function to generate tables
+      generateTables();
+
+      // Clear input boxes
+      num.value = "";
+      end.value = "";
+    });
+  </script>
+</body>
+</html>
